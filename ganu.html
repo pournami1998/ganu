@@ -1,0 +1,84 @@
+<html>
+<head>
+    <title>add and remove</title>
+</head>
+<body>
+    <script type="text/javascript">
+        window.onload = function () {
+            
+            var fruits = new Array();
+            fruits.push(["banana", "yellow"]);
+            fruits.push(["apple", "red"]);
+            fruits.push(["orange", "orange"]);
+            fruits.push(["Dates", "brown"]);
+ 
+            
+            for (var i = 0; i < fruits.length; i++) {
+                AddRow(fruits[i][0], fruits[i][1]);
+            }
+        };
+ 
+        function Add() {
+            var txtName = document.getElementById("txtName");
+            var txtCountry = document.getElementById("txtcolor");
+            AddRow(txtName.value, txtColor.value);
+            txtName.value = "";
+            txtColor.value = "";
+        };
+        function Remove(button) {
+            
+            var row = button.parentNode.parentNode;
+            var name = row.getElementsByTagName("TD")[0].innerHTML;
+             {
+ 
+                
+                var table = document.getElementById("tblfruits");
+ 
+                
+                table.deleteRow(row.rowIndex);
+            }
+        };
+ 
+        function AddRow(name, color) {
+            
+            var tBody = document.getElementById("tblfruits").getElementsByTagName("TBODY")[0];
+ 
+            
+            row = tBody.insertRow(-1);
+ 
+            //Add Name cell.
+            var cell = row.insertCell(-1);
+            cell.innerHTML = name;
+ 
+            //Add Country cell.
+            cell = row.insertCell(-1);
+            cell.innerHTML = color;
+            //Add Button cell.
+            cell = row.insertCell(-1);
+            var btnRemove = document.createElement("INPUT");
+            btnRemove.type = "button";
+            btnRemove.value = "Remove";
+            btnRemove.setAttribute("onclick", "Remove(this);");
+            cell.appendChild(btnRemove);
+        }
+    </script>
+    <table id="tblfruits" cellpadding="0" cellspacing="0" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Color</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><input type="text" id="txtName" /></td>
+                <td><input type="text" id="txtColor" /></td>
+                <td><input type="button" onclick="Add()" value="Add" /></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
